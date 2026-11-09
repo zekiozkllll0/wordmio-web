@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MindWidget: Learn a word every time you look at your phone</title>
-<meta name="description" content="MindWidget puts the most useful words of a new language on your Home Screen and Lock Screen. English, Turkish, German, French and Spanish. Free, no ads, no account.">
+<meta name="description" content="MindWidget puts the most useful words of a new language on your Home Screen and Lock Screen. English, Turkish, German, French, Italian and Spanish. Free, no ads, no account.">
 <meta property="og:title" content="MindWidget: Learn Words">
 <meta property="og:description" content="Learn a new word every time you look at your phone. Widgets for the Home Screen and Lock Screen.">
 <meta property="og:image" content="https://mindwidget.app/img/icon-512.png">
@@ -105,6 +105,7 @@ footer a:hover { color: var(--indigo); }
       <option value="tr">Türkçe</option>
       <option value="de">Deutsch</option>
       <option value="fr">Français</option>
+      <option value="it">Italiano</option>
       <option value="es">Español</option>
     </select>
   </div>
@@ -200,7 +201,7 @@ const T = {
     k1: "Why MindWidget", h2a: "Small moments, real progress",
     f1t: "Words on your Lock Screen", f1d: "Glance at your phone, learn a word. Widgets for the Home Screen and the Lock Screen.",
     f2t: "Answer in the widget", f2d: "A mini question you solve without opening the app: green when you are right, red when you are wrong.",
-    f3t: "525 words, 5 languages", f3d: "English, Turkish, German, French and Spanish. Choose the app's language and the language you learn separately.",
+    f3t: "525 words, 6 languages", f3d: "English, Turkish, German, French, Italian and Spanish. Choose the app's language and the language you learn separately.",
     f4t: "Words come back in time", f4d: "Spaced repetition brings back what you are about to forget. Every word has an example sentence and spoken pronunciation.",
     f5t: "Private by design", f5d: "No account, no ads, no tracking. Your progress stays on your phone.",
     f6t: "Your colours", f6d: "Paint every widget the way you like and keep a weekly streak going.",
@@ -221,7 +222,7 @@ const T = {
     k1: "Neden MindWidget", h2a: "Küçük anlar, gerçek ilerleme",
     f1t: "Kilit ekranında kelimeler", f1d: "Telefona bir bakış, bir kelime. Ana ekran ve kilit ekranı için widget'lar.",
     f2t: "Widget'ın içinde soru", f2d: "Uygulamayı açmadan çözdüğün mini soru: doğruysa yeşil, yanlışsa kırmızı.",
-    f3t: "525 kelime, 5 dil", f3d: "İngilizce, Türkçe, Almanca, Fransızca ve İspanyolca. Uygulamanın dilini ve öğrendiğin dili ayrı seçersin.",
+    f3t: "525 kelime, 6 dil", f3d: "İngilizce, Türkçe, Almanca, Fransızca, İtalyanca ve İspanyolca. Uygulamanın dilini ve öğrendiğin dili ayrı seçersin.",
     f4t: "Kelimeler zamanında geri gelir", f4d: "Aralıklı tekrar, unutmak üzere olduğun kelimeyi geri getirir. Her kelimede örnek cümle ve sesli okuma var.",
     f5t: "Gizliliğe saygılı", f5d: "Hesap yok, reklam yok, takip yok. İlerlemen yalnızca telefonunda durur.",
     f6t: "Senin renklerin", f6d: "Her widget'ı istediğin renge boya, haftalık serini sürdür.",
@@ -242,7 +243,7 @@ const T = {
     k1: "Warum MindWidget", h2a: "Kleine Momente, echter Fortschritt",
     f1t: "Wörter auf dem Sperrbildschirm", f1d: "Ein Blick aufs Handy, ein Wort gelernt. Widgets für Home- und Sperrbildschirm.",
     f2t: "Antworten im Widget", f2d: "Eine Mini-Frage, die du löst, ohne die App zu öffnen: grün bei richtig, rot bei falsch.",
-    f3t: "525 Wörter, 5 Sprachen", f3d: "Englisch, Türkisch, Deutsch, Französisch und Spanisch. App-Sprache und Lernsprache wählst du getrennt.",
+    f3t: "525 Wörter, 6 Sprachen", f3d: "Englisch, Türkisch, Deutsch, Französisch, Italienisch und Spanisch. App-Sprache und Lernsprache wählst du getrennt.",
     f4t: "Wörter kommen rechtzeitig zurück", f4d: "Die Wiederholung im richtigen Abstand bringt zurück, was du gleich vergisst. Jedes Wort mit Beispielsatz und Aussprache.",
     f5t: "Privat von Anfang an", f5d: "Kein Konto, keine Werbung, kein Tracking. Dein Fortschritt bleibt auf deinem Handy.",
     f6t: "Deine Farben", f6d: "Gestalte jedes Widget in deiner Farbe und halte deine Wochenserie.",
@@ -263,7 +264,7 @@ const T = {
     k1: "Pourquoi MindWidget", h2a: "De petits moments, de vrais progrès",
     f1t: "Des mots sur l'écran verrouillé", f1d: "Un coup d'œil, un mot appris. Des widgets pour l'écran d'accueil et l'écran verrouillé.",
     f2t: "Réponds dans le widget", f2d: "Une mini-question à résoudre sans ouvrir l'app : vert si c'est juste, rouge si c'est faux.",
-    f3t: "525 mots, 5 langues", f3d: "Anglais, turc, allemand, français et espagnol. Tu choisis séparément la langue de l'app et celle que tu apprends.",
+    f3t: "525 mots, 6 langues", f3d: "Anglais, turc, allemand, français, italien et espagnol. Tu choisis séparément la langue de l'app et celle que tu apprends.",
     f4t: "Les mots reviennent au bon moment", f4d: "Les révisions espacées ramènent ce que tu allais oublier. Chaque mot a une phrase d'exemple et sa prononciation.",
     f5t: "Respect de la vie privée", f5d: "Pas de compte, pas de pub, pas de pistage. Ta progression reste sur ton téléphone.",
     f6t: "Tes couleurs", f6d: "Choisis la couleur de chaque widget et garde ta série de la semaine.",
@@ -275,6 +276,27 @@ const T = {
     h2d: "Ton prochain mot est à un coup d'œil", bandp: "Gratuit sur l'App Store pour iPhone.",
     support: "Assistance", privacy: "Confidentialité", privacyHref: "privacy-fr.html", shots: "fr"
   },
+  it: {
+    title: "MindWidget: impara una parola ogni volta che guardi il telefono",
+    h1html: "Impara una parola <mark>ogni volta</mark> che guardi il telefono",
+    lead: "MindWidget porta le parole più utili di una nuova lingua nella schermata Home e nella schermata di blocco. Pochi minuti al giorno, con test brevi e ripasso a intervalli.",
+    cta: "Scarica dall'App Store",
+    chip1: "Gratis", chip2: "Senza pubblicità", chip3: "Senza account",
+    k1: "Perché MindWidget", h2a: "Piccoli momenti, progressi veri",
+    f1t: "Parole sulla schermata di blocco", f1d: "Uno sguardo al telefono, una parola imparata. Widget per la schermata Home e quella di blocco.",
+    f2t: "Rispondi nel widget", f2d: "Una mini domanda che risolvi senza aprire l'app: verde se è giusta, rossa se è sbagliata.",
+    f3t: "525 parole, 6 lingue", f3d: "Inglese, turco, tedesco, francese, italiano e spagnolo. Scegli separatamente la lingua dell'app e quella che impari.",
+    f4t: "Le parole tornano al momento giusto", f4d: "Il ripasso a intervalli ti riporta quello che stai per dimenticare. Ogni parola ha una frase di esempio e la pronuncia.",
+    f5t: "Privacy prima di tutto", f5d: "Nessun account, nessuna pubblicità, nessun tracciamento. I tuoi progressi restano sul tuo telefono.",
+    f6t: "I tuoi colori", f6d: "Colora ogni widget come preferisci e mantieni la tua serie settimanale.",
+    k2: "Dentro l'app", h2b: "Oggi, libreria, parole e test",
+    k3: "Come funziona", h2c: "Pronto in un minuto",
+    s1t: "Scegli le lingue", s1d: "La lingua dell'app e quella che vuoi imparare, poi il tuo livello da A0 ad A2.",
+    s2t: "Aggiungi i widget", s2d: "Metti una parola, una frase o una mini domanda nella schermata Home e in quella di blocco.",
+    s3t: "Un po' ogni giorno", s3d: "Raggiungi l'obiettivo del giorno, fai un test veloce e mantieni la serie.",
+    h2d: "La tua prossima parola è a uno sguardo di distanza", bandp: "Gratis sull'App Store per iPhone.",
+    support: "Assistenza", privacy: "Privacy", privacyHref: "privacy-it.html", shots: "it"
+  },
   es: {
     title: "MindWidget: una palabra cada vez que miras el móvil",
     h1html: "Aprende una palabra <mark>cada vez</mark> que miras el móvil",
@@ -284,7 +306,7 @@ const T = {
     k1: "Por qué MindWidget", h2a: "Pequeños momentos, progreso real",
     f1t: "Palabras en la pantalla bloqueada", f1d: "Un vistazo al móvil, una palabra aprendida. Widgets para la pantalla de inicio y la pantalla bloqueada.",
     f2t: "Responde en el widget", f2d: "Una mini pregunta que resuelves sin abrir la app: verde si aciertas, rojo si fallas.",
-    f3t: "525 palabras, 5 idiomas", f3d: "Inglés, turco, alemán, francés y español. Eliges por separado el idioma de la app y el que aprendes.",
+    f3t: "525 palabras, 6 idiomas", f3d: "Inglés, turco, alemán, francés, italiano y español. Eliges por separado el idioma de la app y el que aprendes.",
     f4t: "Las palabras vuelven a tiempo", f4d: "El repaso espaciado te trae lo que estás a punto de olvidar. Cada palabra tiene una frase de ejemplo y su pronunciación.",
     f5t: "Privado por diseño", f5d: "Sin cuenta, sin anuncios, sin rastreo. Tu progreso se queda en tu móvil.",
     f6t: "Tus colores", f6d: "Pinta cada widget a tu gusto y mantén tu racha semanal.",
