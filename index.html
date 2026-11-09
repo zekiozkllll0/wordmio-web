@@ -1,37 +1,326 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>MindWidget</title>
-    <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
-    <style id="expo-reset">
-      /* These styles make the body full-height */
-      html,
-      body {
-        height: 100%;
-      }
-      /* These styles disable body scrolling if you are using <ScrollView> */
-      body {
-        overflow: hidden;
-      }
-      /* These styles make the root element full-height */
-      #root {
-        display: flex;
-        height: 100%;
-        flex: 1;
-      }
-    </style>
-  <link rel="icon" href="/wordmio-web/favicon.ico"/></head>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MindWidget: Learn a word every time you look at your phone</title>
+<meta name="description" content="MindWidget puts the most useful words of a new language on your Home Screen and Lock Screen. English, Turkish, German, French and Spanish. Free, no ads, no account.">
+<meta property="og:title" content="MindWidget: Learn Words">
+<meta property="og:description" content="Learn a new word every time you look at your phone. Widgets for the Home Screen and Lock Screen.">
+<meta property="og:image" content="https://mindwidget.app/img/icon-512.png">
+<meta property="og:url" content="https://mindwidget.app/">
+<meta name="apple-itunes-app" content="app-id=6825856127">
+<meta name="theme-color" content="#2F3FD8">
+<link rel="icon" href="img/favicon-64.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --indigo: #2F3FD8; --deep: #2433B8; --on-indigo: #D9DDFF;
+  --yellow: #FFD84D; --ink: #12162B; --ink-soft: #3C4258; --muted: #545B73;
+  --ground: #F4F5F9; --surface: #FFFFFF; --line: #E3E5EE; --cream: #FFF4CC;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; font: 500 17px/1.55 Nunito, system-ui, sans-serif; color: var(--ink); background: var(--ground); }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+h1, h2, h3 { font-family: Fredoka, Nunito, system-ui, sans-serif; letter-spacing: -0.01em; margin: 0; }
 
-  <body>
-    <!-- Use static rendering with Expo Router to support running without JavaScript. -->
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-    <!-- The root element for your Expo app. -->
-    <div id="root"></div>
-  <script src="/wordmio-web/_expo/static/js/web/entry-6da9a755679e19e69bd08bc0f427fe5f.js" defer></script>
+/* Header */
+header { background: var(--indigo); color: #fff; }
+.bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 0; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: Fredoka, sans-serif; font-weight: 700; font-size: 26px; }
+.brand img { width: 40px; height: 40px; border-radius: 10px; border: 2px solid rgba(255,255,255,.55); }
+select.lang { appearance: none; -webkit-appearance: none; background: rgba(255,255,255,.14); color: #fff; border: 1.5px solid rgba(255,255,255,.35); border-radius: 999px; padding: 8px 34px 8px 14px; font: 700 15px Nunito, sans-serif; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='white' stroke-width='2' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; }
+select.lang option { color: var(--ink); }
+
+/* Hero */
+.hero { background: var(--indigo); color: #fff; overflow: hidden; position: relative; }
+.hero::before { content: ""; position: absolute; left: -10%; right: -10%; top: 58%; height: 150px; background: var(--yellow); transform: rotate(-6deg); opacity: .95; }
+.hero .wrap { position: relative; display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; padding-top: 40px; padding-bottom: 80px; }
+.hero h1 { font-size: clamp(38px, 5.6vw, 64px); line-height: 1.05; }
+.hero h1 mark { background: var(--yellow); color: var(--ink); padding: 0 .18em; border-radius: .2em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.hero p.lead { font-size: 19px; color: var(--on-indigo); margin: 20px 0 28px; max-width: 34em; }
+.cta { display: inline-flex; align-items: center; gap: 12px; background: #fff; color: var(--indigo); text-decoration: none; font-weight: 800; font-size: 18px; padding: 16px 26px; border-radius: 999px; box-shadow: 0 10px 30px rgba(0,0,0,.18); transition: transform .15s; }
+.cta:hover { transform: translateY(-2px); }
+.cta svg { width: 22px; height: 22px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.chip { font-weight: 800; font-size: 14px; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.14); color: #fff; }
+.phones { position: relative; height: 600px; }
+.phone { position: absolute; width: 260px; border-radius: 40px; border: 10px solid var(--ink); background: var(--ink); overflow: hidden; box-shadow: 0 30px 60px rgba(10,14,40,.45); }
+.phone img { border-radius: 30px; }
+.phone.a { left: 8%; top: 10px; transform: rotate(-6deg); z-index: 2; }
+.phone.b { right: 4%; top: 70px; transform: rotate(6deg); }
+
+/* Sections */
+section { padding: 80px 0; }
+.kicker { font-weight: 800; color: var(--indigo); letter-spacing: .08em; text-transform: uppercase; font-size: 14px; }
+section h2 { font-size: clamp(30px, 4vw, 44px); line-height: 1.1; margin: 8px 0 36px; max-width: 18em; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 26px; }
+.card .ico { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; font-size: 26px; margin-bottom: 14px; }
+.card h3 { font-size: 22px; margin-bottom: 6px; }
+.card p { margin: 0; color: var(--ink-soft); }
+.shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.shots img { border-radius: 26px; border: 8px solid var(--ink); background: var(--ink); }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: s; }
+.step { background: var(--cream); border-radius: 24px; padding: 26px; }
+.step::before { counter-increment: s; content: counter(s); display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--ink); color: var(--yellow); font: 700 22px Fredoka, sans-serif; margin-bottom: 12px; }
+.step h3 { font-size: 21px; }
+.band { background: var(--indigo); color: #fff; text-align: center; border-radius: 32px; padding: 56px 24px; }
+.band h2 { margin: 0 auto 24px; color: #fff; }
+.band p { color: var(--on-indigo); margin: -8px auto 26px; max-width: 32em; }
+
+footer { padding: 40px 0 60px; color: var(--muted); font-size: 15px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
+footer a { font-weight: 800; color: var(--ink-soft); text-decoration: none; }
+footer a:hover { color: var(--indigo); }
+
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: 1fr; padding-top: 16px; padding-bottom: 40px; }
+  .hero::before { top: 74%; }
+  .phones { height: 440px; max-width: 420px; margin: 0 auto; width: 100%; }
+  .phone { width: 190px; border-width: 8px; border-radius: 32px; }
+  .phone img { border-radius: 24px; }
+  .shots, .grid { grid-template-columns: repeat(2, 1fr); }
+  .steps { grid-template-columns: 1fr; }
+  section { padding: 56px 0; }
+}
+@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+@media (max-width: 380px) { .phone { width: 160px; } .phones { height: 380px; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="./"><img src="img/icon-512.png" alt="">mindwidget</a>
+    <select class="lang" id="lang" aria-label="Language">
+      <option value="en">English</option>
+      <option value="tr">Türkçe</option>
+      <option value="de">Deutsch</option>
+      <option value="fr">Français</option>
+      <option value="es">Español</option>
+    </select>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <h1 data-i="h1html"></h1>
+      <p class="lead" data-i="lead"></p>
+      <a class="cta store" href="https://apps.apple.com/app/id6825856127">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3v11.2l4.6-4.6 1.4 1.4L12 17 6 11l1.4-1.4L12 14.2V3h0zM5 19h14v2H5z"/></svg>
+        <span data-i="cta"></span>
+      </a>
+      <div class="chips"><span class="chip" data-i="chip1"></span><span class="chip" data-i="chip2"></span><span class="chip" data-i="chip3"></span></div>
+    </div>
+    <div class="phones" aria-hidden="true">
+      <div class="phone a"><img data-shot="01-today" alt=""></div>
+      <div class="phone b"><img data-shot="03-word" alt=""></div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="kicker" data-i="k1"></div>
+    <h2 data-i="h2a"></h2>
+    <div class="grid">
+      <div class="card"><div class="ico" style="background:#FFF1BF">🔒</div><h3 data-i="f1t"></h3><p data-i="f1d"></p></div>
+      <div class="card"><div class="ico" style="background:#D9F2E3">✅</div><h3 data-i="f2t"></h3><p data-i="f2d"></p></div>
+      <div class="card"><div class="ico" style="background:#D6EAFF">🌍</div><h3 data-i="f3t"></h3><p data-i="f3d"></p></div>
+      <div class="card"><div class="ico" style="background:#FFE1CF">🔁</div><h3 data-i="f4t"></h3><p data-i="f4d"></p></div>
+      <div class="card"><div class="ico" style="background:#E6DEFF">🛡️</div><h3 data-i="f5t"></h3><p data-i="f5d"></p></div>
+      <div class="card"><div class="ico" style="background:#FFDCE8">🎨</div><h3 data-i="f6t"></h3><p data-i="f6d"></p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker" data-i="k2"></div>
+    <h2 data-i="h2b"></h2>
+    <div class="shots">
+      <img data-shot="01-today" alt="" loading="lazy">
+      <img data-shot="02-library" alt="" loading="lazy">
+      <img data-shot="03-word" alt="" loading="lazy">
+      <img data-shot="04-quiz" alt="" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="kicker" data-i="k3"></div>
+    <h2 data-i="h2c"></h2>
+    <div class="steps">
+      <div class="step"><h3 data-i="s1t"></h3><p data-i="s1d"></p></div>
+      <div class="step"><h3 data-i="s2t"></h3><p data-i="s2d"></p></div>
+      <div class="step"><h3 data-i="s3t"></h3><p data-i="s3d"></p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="band">
+      <h2 data-i="h2d"></h2>
+      <p data-i="bandp"></p>
+      <a class="cta store" href="https://apps.apple.com/app/id6825856127"><span data-i="cta"></span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 Zeki Özkul · MindWidget</div>
+    <nav>
+      <a href="support.html" data-i="support"></a>
+      <a id="privacy" href="privacy.html" data-i="privacy"></a>
+      <a href="mailto:support@mindwidget.app">support@mindwidget.app</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+const T = {
+  en: {
+    title: "MindWidget: Learn a word every time you look at your phone",
+    h1html: "Learn a word <mark>every time</mark> you look at your phone",
+    lead: "MindWidget puts the most useful words of a new language on your Home Screen and Lock Screen. A few minutes a day, with short tests and spaced repetition.",
+    cta: "Get it on the App Store",
+    chip1: "Free", chip2: "No ads", chip3: "No account",
+    k1: "Why MindWidget", h2a: "Small moments, real progress",
+    f1t: "Words on your Lock Screen", f1d: "Glance at your phone, learn a word. Widgets for the Home Screen and the Lock Screen.",
+    f2t: "Answer in the widget", f2d: "A mini question you solve without opening the app: green when you are right, red when you are wrong.",
+    f3t: "525 words, 5 languages", f3d: "English, Turkish, German, French and Spanish. Choose the app's language and the language you learn separately.",
+    f4t: "Words come back in time", f4d: "Spaced repetition brings back what you are about to forget. Every word has an example sentence and spoken pronunciation.",
+    f5t: "Private by design", f5d: "No account, no ads, no tracking. Your progress stays on your phone.",
+    f6t: "Your colours", f6d: "Paint every widget the way you like and keep a weekly streak going.",
+    k2: "Inside the app", h2b: "Today, library, words and tests",
+    k3: "How it works", h2c: "Start in a minute",
+    s1t: "Pick your languages", s1d: "The language of the app and the one you want to learn, then your level from A0 to A2.",
+    s2t: "Add the widgets", s2d: "Put a word, a sentence or a mini question on your Home Screen and Lock Screen.",
+    s3t: "Learn a little every day", s3d: "Reach your daily goal, take a quick test and keep your streak.",
+    h2d: "Your next word is one glance away", bandp: "Free on the App Store for iPhone.",
+    support: "Support", privacy: "Privacy", privacyHref: "privacy-en.html", shots: "en"
+  },
+  tr: {
+    title: "MindWidget: Telefona her bakışta bir kelime öğren",
+    h1html: "Telefona <mark>her bakışta</mark> bir kelime öğren",
+    lead: "MindWidget, yeni bir dilin en çok kullanılan kelimelerini ana ekranına ve kilit ekranına getirir. Günde birkaç dakika, kısa testler ve aralıklı tekrarla.",
+    cta: "App Store'dan indir",
+    chip1: "Ücretsiz", chip2: "Reklamsız", chip3: "Hesap gerekmez",
+    k1: "Neden MindWidget", h2a: "Küçük anlar, gerçek ilerleme",
+    f1t: "Kilit ekranında kelimeler", f1d: "Telefona bir bakış, bir kelime. Ana ekran ve kilit ekranı için widget'lar.",
+    f2t: "Widget'ın içinde soru", f2d: "Uygulamayı açmadan çözdüğün mini soru: doğruysa yeşil, yanlışsa kırmızı.",
+    f3t: "525 kelime, 5 dil", f3d: "İngilizce, Türkçe, Almanca, Fransızca ve İspanyolca. Uygulamanın dilini ve öğrendiğin dili ayrı seçersin.",
+    f4t: "Kelimeler zamanında geri gelir", f4d: "Aralıklı tekrar, unutmak üzere olduğun kelimeyi geri getirir. Her kelimede örnek cümle ve sesli okuma var.",
+    f5t: "Gizliliğe saygılı", f5d: "Hesap yok, reklam yok, takip yok. İlerlemen yalnızca telefonunda durur.",
+    f6t: "Senin renklerin", f6d: "Her widget'ı istediğin renge boya, haftalık serini sürdür.",
+    k2: "Uygulamanın içi", h2b: "Bugün, kütüphane, kelimeler ve testler",
+    k3: "Nasıl çalışır", h2c: "Bir dakikada başla",
+    s1t: "Dillerini seç", s1d: "Uygulamanın dilini ve öğrenmek istediğin dili seç, sonra A0'dan A2'ye seviyeni.",
+    s2t: "Widget'ları ekle", s2d: "Ana ekranına ve kilit ekranına bir kelime, bir cümle ya da mini soru koy.",
+    s3t: "Her gün biraz öğren", s3d: "Günlük hedefini tamamla, kısa bir test çöz, serini koru.",
+    h2d: "Bir sonraki kelimen bir bakış uzağında", bandp: "iPhone için App Store'da ücretsiz.",
+    support: "Destek", privacy: "Gizlilik", privacyHref: "privacy-tr.html", shots: "tr"
+  },
+  de: {
+    title: "MindWidget: Ein Wort bei jedem Blick aufs Handy",
+    h1html: "Lerne <mark>bei jedem Blick</mark> aufs Handy ein Wort",
+    lead: "MindWidget bringt die wichtigsten Wörter einer neuen Sprache auf deinen Home-Bildschirm und Sperrbildschirm. Ein paar Minuten am Tag, mit kurzen Tests und Wiederholung im richtigen Abstand.",
+    cta: "Im App Store laden",
+    chip1: "Kostenlos", chip2: "Ohne Werbung", chip3: "Ohne Konto",
+    k1: "Warum MindWidget", h2a: "Kleine Momente, echter Fortschritt",
+    f1t: "Wörter auf dem Sperrbildschirm", f1d: "Ein Blick aufs Handy, ein Wort gelernt. Widgets für Home- und Sperrbildschirm.",
+    f2t: "Antworten im Widget", f2d: "Eine Mini-Frage, die du löst, ohne die App zu öffnen: grün bei richtig, rot bei falsch.",
+    f3t: "525 Wörter, 5 Sprachen", f3d: "Englisch, Türkisch, Deutsch, Französisch und Spanisch. App-Sprache und Lernsprache wählst du getrennt.",
+    f4t: "Wörter kommen rechtzeitig zurück", f4d: "Die Wiederholung im richtigen Abstand bringt zurück, was du gleich vergisst. Jedes Wort mit Beispielsatz und Aussprache.",
+    f5t: "Privat von Anfang an", f5d: "Kein Konto, keine Werbung, kein Tracking. Dein Fortschritt bleibt auf deinem Handy.",
+    f6t: "Deine Farben", f6d: "Gestalte jedes Widget in deiner Farbe und halte deine Wochenserie.",
+    k2: "In der App", h2b: "Heute, Bibliothek, Wörter und Tests",
+    k3: "So funktioniert's", h2c: "In einer Minute startklar",
+    s1t: "Sprachen wählen", s1d: "Die Sprache der App und die Sprache, die du lernen willst, dann dein Niveau von A0 bis A2.",
+    s2t: "Widgets hinzufügen", s2d: "Lege ein Wort, einen Satz oder eine Mini-Frage auf Home- und Sperrbildschirm.",
+    s3t: "Jeden Tag ein bisschen", s3d: "Erreiche dein Tagesziel, mach einen kurzen Test und halte deine Serie.",
+    h2d: "Dein nächstes Wort ist nur einen Blick entfernt", bandp: "Kostenlos im App Store für iPhone.",
+    support: "Support", privacy: "Datenschutz", privacyHref: "privacy-de.html", shots: "de"
+  },
+  fr: {
+    title: "MindWidget : un mot à chaque fois que tu regardes ton téléphone",
+    h1html: "Apprends un mot <mark>à chaque coup d'œil</mark> sur ton téléphone",
+    lead: "MindWidget place les mots les plus utiles d'une nouvelle langue sur ton écran d'accueil et ton écran verrouillé. Quelques minutes par jour, avec des tests courts et des révisions espacées.",
+    cta: "Télécharger sur l'App Store",
+    chip1: "Gratuit", chip2: "Sans pub", chip3: "Sans compte",
+    k1: "Pourquoi MindWidget", h2a: "De petits moments, de vrais progrès",
+    f1t: "Des mots sur l'écran verrouillé", f1d: "Un coup d'œil, un mot appris. Des widgets pour l'écran d'accueil et l'écran verrouillé.",
+    f2t: "Réponds dans le widget", f2d: "Une mini-question à résoudre sans ouvrir l'app : vert si c'est juste, rouge si c'est faux.",
+    f3t: "525 mots, 5 langues", f3d: "Anglais, turc, allemand, français et espagnol. Tu choisis séparément la langue de l'app et celle que tu apprends.",
+    f4t: "Les mots reviennent au bon moment", f4d: "Les révisions espacées ramènent ce que tu allais oublier. Chaque mot a une phrase d'exemple et sa prononciation.",
+    f5t: "Respect de la vie privée", f5d: "Pas de compte, pas de pub, pas de pistage. Ta progression reste sur ton téléphone.",
+    f6t: "Tes couleurs", f6d: "Choisis la couleur de chaque widget et garde ta série de la semaine.",
+    k2: "Dans l'app", h2b: "Aujourd'hui, bibliothèque, mots et tests",
+    k3: "Comment ça marche", h2c: "Prêt en une minute",
+    s1t: "Choisis tes langues", s1d: "La langue de l'app et celle que tu veux apprendre, puis ton niveau de A0 à A2.",
+    s2t: "Ajoute les widgets", s2d: "Place un mot, une phrase ou une mini-question sur ton écran d'accueil et ton écran verrouillé.",
+    s3t: "Un peu chaque jour", s3d: "Atteins ton objectif du jour, fais un test rapide et garde ta série.",
+    h2d: "Ton prochain mot est à un coup d'œil", bandp: "Gratuit sur l'App Store pour iPhone.",
+    support: "Assistance", privacy: "Confidentialité", privacyHref: "privacy-fr.html", shots: "fr"
+  },
+  es: {
+    title: "MindWidget: una palabra cada vez que miras el móvil",
+    h1html: "Aprende una palabra <mark>cada vez</mark> que miras el móvil",
+    lead: "MindWidget pone las palabras más útiles de un nuevo idioma en tu pantalla de inicio y tu pantalla bloqueada. Unos minutos al día, con tests cortos y repaso espaciado.",
+    cta: "Descargar en el App Store",
+    chip1: "Gratis", chip2: "Sin anuncios", chip3: "Sin cuenta",
+    k1: "Por qué MindWidget", h2a: "Pequeños momentos, progreso real",
+    f1t: "Palabras en la pantalla bloqueada", f1d: "Un vistazo al móvil, una palabra aprendida. Widgets para la pantalla de inicio y la pantalla bloqueada.",
+    f2t: "Responde en el widget", f2d: "Una mini pregunta que resuelves sin abrir la app: verde si aciertas, rojo si fallas.",
+    f3t: "525 palabras, 5 idiomas", f3d: "Inglés, turco, alemán, francés y español. Eliges por separado el idioma de la app y el que aprendes.",
+    f4t: "Las palabras vuelven a tiempo", f4d: "El repaso espaciado te trae lo que estás a punto de olvidar. Cada palabra tiene una frase de ejemplo y su pronunciación.",
+    f5t: "Privado por diseño", f5d: "Sin cuenta, sin anuncios, sin rastreo. Tu progreso se queda en tu móvil.",
+    f6t: "Tus colores", f6d: "Pinta cada widget a tu gusto y mantén tu racha semanal.",
+    k2: "Dentro de la app", h2b: "Hoy, biblioteca, palabras y tests",
+    k3: "Cómo funciona", h2c: "Empieza en un minuto",
+    s1t: "Elige tus idiomas", s1d: "El idioma de la app y el que quieres aprender, y luego tu nivel de A0 a A2.",
+    s2t: "Añade los widgets", s2d: "Pon una palabra, una frase o una mini pregunta en tu pantalla de inicio y tu pantalla bloqueada.",
+    s3t: "Aprende un poco cada día", s3d: "Cumple tu objetivo diario, haz un test rápido y mantén tu racha.",
+    h2d: "Tu próxima palabra está a un vistazo", bandp: "Gratis en el App Store para iPhone.",
+    support: "Soporte", privacy: "Privacidad", privacyHref: "privacy-es.html", shots: "es"
+  }
+};
+function pick() {
+  const q = new URLSearchParams(location.search).get("lang");
+  if (q && T[q]) return q;
+  try { const s = localStorage.getItem("lang"); if (s && T[s]) return s; } catch (e) {}
+  const n = (navigator.languages || [navigator.language || "en"]).map(l => l.slice(0, 2));
+  return n.find(l => T[l]) || "en";
+}
+function apply(l) {
+  const t = T[l];
+  document.documentElement.lang = l;
+  document.title = t.title;
+  document.querySelectorAll("[data-i]").forEach(el => {
+    const k = el.dataset.i;
+    if (k === "h1html") el.innerHTML = t.h1html; else el.textContent = t[k];
+  });
+  document.querySelectorAll("img[data-shot]").forEach(img => {
+    img.src = "img/screens/" + t.shots + "/" + img.dataset.shot + ".jpg";
+  });
+  document.getElementById("privacy").href = t.privacyHref;
+  document.getElementById("lang").value = l;
+}
+const sel = document.getElementById("lang");
+sel.addEventListener("change", () => { try { localStorage.setItem("lang", sel.value); } catch (e) {} apply(sel.value); });
+apply(pick());
+</script>
 </body>
 </html>
